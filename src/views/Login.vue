@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-import loginBurger from "@/assets/bg-login.png";
 import { BASEURL } from "../../env";
 import { useRouter } from "vue-router";
 import Button from "../components/Button.vue";
