@@ -14,12 +14,12 @@
     </div>
     <div class="container no-content" v-else>
       <span id="created">"Seu carrinho está vazio"</span>
-      <Button style="margin-left: 2em;" @click="goToHome" class="button">Voltar para Home</Button>
+      <Button style="margin-left: 2em;" @click="goToOrders" class="button">Ver pedidos</Button>
     </div>
   </div>
   <div class="container check" v-else>
     <span id="created">Pedido criado com sucesso!
-      <Button @click="goToHome" class="button">Voltar para Home</Button>
+      <Button @click="goToOrders" class="button">Ver pedidos</Button>
     </span>
   </div>
 </template>
@@ -92,9 +92,17 @@ function calculateTotal() {
   return products?.value?.reduce((total, product) => total + product.preco, 0);
 }
 
-function goToHome() {
+function goToOrders() {
   created.value = false;
-  router.push("/products");
+
+  const permission = localStorage.getItem("permission");
+
+  if (permission === 'atendente') {
+    router.push("/attendant/orders");
+  } else {
+    router.push("/orders");
+  }
+
 }
 </script>
 

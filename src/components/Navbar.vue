@@ -2,7 +2,7 @@
   <div>
     <div id="nav">
       <router-link id="logo-url" :to="{ name: 'home' }">
-        <img id="logo" :src="logo" />
+        <img id="logo" src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" />
       </router-link>
       <div v-if="permission === 'administrador'">
         <router-link to="/manager">Produtos</router-link>
@@ -16,7 +16,7 @@
       <div v-else>
         <router-link to="/cart">Carrinho</router-link>
         <router-link to="/products">Produtos</router-link>
-        <router-link to="/orders">Pedidos</router-link>
+        <router-link to="/orders">Meus pedidos</router-link>
       </div>
       <router-link @click="logout" to="/">Sair</router-link>
     </div>
@@ -24,12 +24,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 
 const permission = localStorage.getItem("permission");
-
-const logo = permission === "administrador" || permission === 'atendente' ? "../src/assets/logo.png" : "src/assets/logo.png"
 
 const logout = () => {
   localStorage.clear();
@@ -65,5 +61,16 @@ const logout = () => {
 
 #nav a:hover {
   color: #ba95ed;
+}
+
+@media (max-width: 600px) {
+  #nav a {
+    font-size: 10px
+  }
+
+  #logo {
+    width: 20px;
+    height: 20px;
+  }
 }
 </style>
