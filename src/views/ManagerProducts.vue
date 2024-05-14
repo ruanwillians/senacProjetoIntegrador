@@ -9,7 +9,8 @@
     </div>
     <div class="burgers">
       <CardManager v-for="burger in hamburgers" :key="burger.id" :id="burger.id" :nome="burger.nome"
-        :preco="burger.preco" :caminhoImagem="burger.caminhoImagem" :descricao="burger.descricao" />
+        :preco="burger.preco" :caminhoImagem="burger.caminhoImagem" :descricao="burger.descricao"
+        :updateProductList="updateProductList" />
     </div>
   </div>
 </template>
@@ -50,6 +51,10 @@ async function getBurgers() {
     console.error("Erro na solicitação GET:", error);
     return [];
   }
+}
+
+async function updateProductList() {
+  hamburgers.value = await getBurgers();
 }
 
 const showAddProductModal = () => {
@@ -158,13 +163,13 @@ const showAddProductModal = () => {
 </label>
 
 <label style="display: flex; flex-direction: column; align-items: center;">
-  <input type="radio" name="imagem" value="https://github.com/ruanwillians/senacProjeto/blob/main/Front-End/src/assets/burger6.png?raw=true">
-  <img src="https://github.com/ruanwillians/senacProjeto/blob/main/Front-End/src/assets/burger6.png?raw=true" style="object-fit: cover; width: 100px; height: 100px">
+  <input type="radio" name="imagem" value="https://github.com/vinimariano/senacProjetoIntegrador/blob/main/Banco-de-Dados/lanches/xis_salada.PNG?raw=true">
+  <img src="https://github.com/vinimariano/senacProjetoIntegrador/blob/main/Banco-de-Dados/lanches/xis_salada.PNG?raw=true" style="object-fit: cover; width: 100px; height: 100px">
 </label>
 
 <label style="display: flex; flex-direction: column; align-items: center;">
-  <input type="radio" name="imagem" value="https://github.com/ruanwillians/senacProjeto/blob/main/Front-End/src/assets/burger2.png?raw=true">
-  <img src="https://github.com/ruanwillians/senacProjeto/blob/main/Front-End/src/assets/burger2.png?raw=true" style="object-fit: cover; width: 100px; height: 100px">
+  <input type="radio" name="imagem" value="https://github.com/vinimariano/senacProjetoIntegrador/blob/main/Banco-de-Dados/lanches/hamburguer_vegano.PNG?raw=true">
+  <img src="https://github.com/vinimariano/senacProjetoIntegrador/blob/main/Banco-de-Dados/lanches/hamburguer_vegano.PNG?raw=true" style="object-fit: cover; width: 100px; height: 100px">
 </label>
      </div>`,
     showCancelButton: true,

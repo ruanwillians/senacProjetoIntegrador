@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 import Button from './Button.vue';
 import { BASEURL } from "../../env";
 
-const props = defineProps(['id', 'nome', 'preco', 'caminhoImagem', 'descricao']);
+const props = defineProps(['id', 'nome', 'preco', 'caminhoImagem', 'descricao', "updateProductList"]);
 
 const nome = ref(props.nome);
 const preco = ref(props.preco);
@@ -42,9 +42,7 @@ const removeProduct = async (product) => {
 
       if (response.status === 200) {
         Swal.fire('Produto excluído com sucesso!', '', 'success');
-        setTimeout(() => {
-          window.location.reload()
-        }, 1500);
+        await props.updateProductList()
       } else {
         Swal.fire('Erro ao excluir o produto.', '', 'error');
       }
